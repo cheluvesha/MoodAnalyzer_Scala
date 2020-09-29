@@ -5,10 +5,19 @@ class MoodAnalyzer (message: String) {
   object MoodAnalyzer {
     // method which checks message
     def analyzeMood(): String = {
-      if (message.contains("Sad"))
-        "SAD"
-      else
-        "HAPPY"
+      try {
+        if (message == null) {
+          return "HAPPY"
+        }
+        if (message.contains("SAD"))
+          "SAD"
+        else
+          "HAPPY"
+      }
+      catch {
+        case nullPointerException: NullPointerException =>
+          throw nullPointerException
+      }
     }
   }
 }
